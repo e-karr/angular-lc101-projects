@@ -1,0 +1,15 @@
+.chores {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h3 {
+    font-size: 2rem;
+    color: darkgreen;
+    text-decoration: underline;
+}
+
+ul {
+    font-size: 1.25rem;
+    color: orangered;
+    font-style: italic;
+}
