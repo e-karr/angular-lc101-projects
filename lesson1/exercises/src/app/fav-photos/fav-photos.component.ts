@@ -10,6 +10,7 @@ export class FavPhotosComponent implements OnInit {
   image1 = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQArwmBUZe_Pqm-Pt7TxjgMuKBcdDHDdhccDk5oWgcmZQ&usqp=CAU&ec=48665698';
   image2 = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJZsz_fkER4SZlvT7f675BYPVP-a_Eoe1RJFrOUIwy8kGpAQGPES7afbcuTuMDMKmuR_DsOBaayiU&usqp=CAU&ec=48665698';
   image3 = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIdg7OUarc5V1TdP1hbYR78AUPmUuEeJmNHmdgLvL7kA&usqp=CAU&ec=48665698';
+  image4 = 'https://media0.giphy.com/media/2IudUHdI075HL02Pkk/giphy.gif';
 
   constructor() { }
 
