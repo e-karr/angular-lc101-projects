@@ -1,4 +1,27 @@
+* {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
 .box {
     display: flex;
+    justify-content: center;
     padding: 10px;
+    border-top: 2px dotted white;
+}
+
+app-header {
+    text-align: center;
+}
+
+app-crew, 
+app-equipment {
+    border-right: 2px dotted white;
+
+}
+
+app-crew,
+app-equipment,
+app-experiments {
+    padding-right: 30px;
 }
