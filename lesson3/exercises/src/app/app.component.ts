@@ -43,4 +43,25 @@ export class AppComponent {
       this.height = 0;
     }
   }
+
+  moveRocket(rocketImage: HTMLElement, direction: string) {
+    let movement: string;
+    if (direction === "right") {
+      movement = parseInt(rocketImage.style.left) + 10 + "px";
+      rocketImage.style.left = movement;
+      this.width = this.width + 10000;
+    } else if (direction === 'left') {
+      movement = parseInt(rocketImage.style.left) - 10 + "px";
+      rocketImage.style.left = movement;
+      this.width = this.width - 10000;
+    } else if (direction === 'up') {
+      movement = parseInt(rocketImage.style.bottom) + 10 + "px";
+      rocketImage.style.bottom = movement;
+      this.height = this.height + 10000;
+    } else {
+      movement = parseInt(rocketImage.style.bottom) - 10 + "px";
+      rocketImage.style.bottom = movement;
+      this.height = this.height - 10000;
+    }
+  }
 }
