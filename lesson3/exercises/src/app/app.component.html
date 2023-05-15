@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-6">
-      <div class="shuttle-background" [style.backgroundColor]="color">
+      <div #shuttleBackground class="shuttle-background" [style.backgroundColor]="color">
         <img
           #rocketImage
           src="assets/images/LaunchCode_rocketline_white.png"
@@ -29,19 +29,41 @@
     </div>
 
     <div class="col-3">
-      <div class="container-right" b>
-        <button (click)="moveRocket(rocketImage, 'up')">Up</button>
-        <button (click)="moveRocket(rocketImage, 'down')">Down</button>
-        <button (click)="moveRocket(rocketImage, 'right')">Right</button>
-        <button (click)="moveRocket(rocketImage, 'left')">Left</button>
+      <div class="container-right">
+        <div *ngIf="!takeOffEnabled">
+          <button (click)="moveRocket(rocketImage, 'up'); warning(rocketImage, shuttleBackground)">
+            Up
+          </button>
+          <button
+            (click)="moveRocket(rocketImage, 'down'); warning(rocketImage, shuttleBackground)"
+          >
+            Down
+          </button>
+          <button
+            (click)="moveRocket(rocketImage, 'right'); warning(rocketImage, shuttleBackground)"
+          >
+            Right
+          </button>
+          <button
+            (click)="moveRocket(rocketImage, 'left'); warning(rocketImage, shuttleBackground)"
+          >
+            Left
+          </button>
+        </div>
         <h3>Space Shuttle Height</h3>
         <p>{{ height }} km</p>
       </div>
     </div>
   </div>
   <div class="container-control-buttons">
-    <button (click)="handleTakeOff()">Take Off</button>
-    <button (click)="handleLand()">Land</button>
-    <button (click)="handleAbort()">Abort Mission</button>
+    <button (click)="handleTakeOff(rocketImage)" [disabled]="!takeOffEnabled">
+      Take Off
+    </button>
+    <button (click)="handleLand(rocketImage)" [disabled]="takeOffEnabled">
+      Land
+    </button>
+    <button (click)="handleAbort(rocketImage)" [disabled]="takeOffEnabled">
+      Abort Mission
+    </button>
   </div>
 </div>
