@@ -13,6 +13,12 @@ export class AppComponent {
   width = 0;
   message = "Space shuttle ready for takeoff!";
   takeOffEnabled: boolean = true;
+  movementEnabled: [boolean, boolean, boolean, boolean] = [
+    false,
+    false,
+    false,
+    false,
+  ];
 
   handleTakeOff(rocketImage: HTMLElement) {
     let result = window.confirm(
@@ -51,7 +57,11 @@ export class AppComponent {
     }
   }
 
-  moveRocket(rocketImage: HTMLElement, direction: string) {
+  moveRocket(
+    rocketImage: HTMLElement,
+    direction: string,
+    background: HTMLElement
+  ) {
     let movement: string;
     if (direction === "right") {
       movement = parseInt(rocketImage.style.left) + 10 + "px";
@@ -66,10 +76,28 @@ export class AppComponent {
       movement = parseInt(rocketImage.style.bottom) + 10 + "px";
       rocketImage.style.bottom = movement;
       this.height = this.height + 10000;
-    } else {
+    } else if (direction === "down") {
       movement = parseInt(rocketImage.style.bottom) - 10 + "px";
       rocketImage.style.bottom = movement;
       this.height = this.height - 10000;
+    }
+
+    if (parseInt(rocketImage.style.left) >= background.offsetWidth - 75) {
+      this.movementEnabled[2] = true;
+    } else if (parseInt(rocketImage.style.left) <= 0) {
+      this.movementEnabled[3] = true;
+    } else if (
+      parseInt(rocketImage.style.bottom) >=
+      background.offsetHeight - 75
+    ) {
+      this.movementEnabled[0] = true;
+    } else if (parseInt(rocketImage.style.bottom) <= 0) {
+      this.movementEnabled[1] = true;
+    } else {
+      this.movementEnabled[0] = false;
+      this.movementEnabled[1] = false;
+      this.movementEnabled[2] = false;
+      this.movementEnabled[3] = false;
     }
   }
 
@@ -81,7 +109,12 @@ export class AppComponent {
 
     let topPosition = parseInt(rocketImage.style.bottom);
     let leftPosition = parseInt(rocketImage.style.left);
-    if (topPosition >= topWarning || topPosition <= bottomWarning || leftPosition <= leftWarning || leftPosition >= rightWarning) {
+    if (
+      topPosition >= topWarning ||
+      topPosition <= bottomWarning ||
+      leftPosition <= leftWarning ||
+      leftPosition >= rightWarning
+    ) {
       this.color = "orange";
     } else {
       this.color = "blue";

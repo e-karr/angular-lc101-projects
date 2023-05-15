@@ -16,7 +16,11 @@
     </div>
 
     <div class="col-6">
-      <div #shuttleBackground class="shuttle-background" [style.backgroundColor]="color">
+      <div
+        #shuttleBackground
+        class="shuttle-background"
+        [style.backgroundColor]="color"
+      >
         <img
           #rocketImage
           src="assets/images/LaunchCode_rocketline_white.png"
@@ -31,21 +35,39 @@
     <div class="col-3">
       <div class="container-right">
         <div *ngIf="!takeOffEnabled">
-          <button (click)="moveRocket(rocketImage, 'up'); warning(rocketImage, shuttleBackground)">
+          <button
+            (click)="
+              moveRocket(rocketImage, 'up', shuttleBackground);
+              warning(rocketImage, shuttleBackground)
+            "
+            [disabled]="movementEnabled[0]"
+          >
             Up
           </button>
           <button
-            (click)="moveRocket(rocketImage, 'down'); warning(rocketImage, shuttleBackground)"
+            (click)="
+              moveRocket(rocketImage, 'down', shuttleBackground);
+              warning(rocketImage, shuttleBackground)
+            "
+            [disabled]="movementEnabled[1]"
           >
             Down
           </button>
           <button
-            (click)="moveRocket(rocketImage, 'right'); warning(rocketImage, shuttleBackground)"
+            (click)="
+              moveRocket(rocketImage, 'right', shuttleBackground);
+              warning(rocketImage, shuttleBackground)
+            "
+            [disabled]="movementEnabled[2]"
           >
             Right
           </button>
           <button
-            (click)="moveRocket(rocketImage, 'left'); warning(rocketImage, shuttleBackground)"
+            (click)="
+              moveRocket(rocketImage, 'left', shuttleBackground);
+              warning(rocketImage, shuttleBackground)
+            "
+            [disabled]="movementEnabled[3]"
           >
             Left
           </button>
