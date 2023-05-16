@@ -20,7 +20,7 @@ export class AppComponent {
     false,
   ];
 
-  handleTakeOff(rocketImage: HTMLElement) {
+  handleTakeOff(rocketImage: HTMLElement, background: HTMLElement) {
     let result = window.confirm(
       "Are you sure the shuttle is ready for takeoff?"
     );
@@ -32,6 +32,7 @@ export class AppComponent {
       this.message = "Shuttle in flight.";
       this.takeOffEnabled = false;
       rocketImage.style.bottom = "10px";
+      this.disableDirectionButtons(rocketImage, background);
     }
   }
 
@@ -67,7 +68,6 @@ export class AppComponent {
       movement = parseInt(rocketImage.style.left) + 10 + "px";
       rocketImage.style.left = movement;
       this.width = this.width + 10000;
-      console.log(this.width);
     } else if (direction === "left") {
       movement = parseInt(rocketImage.style.left) - 10 + "px";
       rocketImage.style.left = movement;
@@ -82,30 +82,42 @@ export class AppComponent {
       this.height = this.height - 10000;
     }
 
+    this.warning(rocketImage, background);
+
+    this.disableDirectionButtons(rocketImage, background);
+  }
+
+  disableDirectionButtons(rocketImage: HTMLElement, background: HTMLElement) {
     if (parseInt(rocketImage.style.left) >= background.offsetWidth - 75) {
       this.movementEnabled[2] = true;
-    } else if (parseInt(rocketImage.style.left) <= 0) {
+    } else {
+      this.movementEnabled[2] = false;
+    }
+
+    if (parseInt(rocketImage.style.left) <= 0) {
       this.movementEnabled[3] = true;
-    } else if (
-      parseInt(rocketImage.style.bottom) >=
-      background.offsetHeight - 75
-    ) {
+    } else {
+      this.movementEnabled[3] = false;
+    }
+
+    if (parseInt(rocketImage.style.bottom) >= background.offsetHeight - 75) {
       this.movementEnabled[0] = true;
-    } else if (parseInt(rocketImage.style.bottom) <= 0) {
-      this.movementEnabled[1] = true;
     } else {
       this.movementEnabled[0] = false;
+    }
+
+    if (parseInt(rocketImage.style.bottom) <= 0) {
+      this.movementEnabled[1] = true;
+    } else {
       this.movementEnabled[1] = false;
-      this.movementEnabled[2] = false;
-      this.movementEnabled[3] = false;
     }
   }
 
   warning(rocketImage: HTMLElement, background: HTMLElement) {
-    let topWarning = background.offsetHeight - 75 - 30;
-    let bottomWarning = 30;
-    let leftWarning = 30;
-    let rightWarning = background.offsetWidth - 75 - 30;
+    let topWarning = background.offsetHeight - 75 - 10;
+    let bottomWarning = 10;
+    let leftWarning = 10;
+    let rightWarning = background.offsetWidth - 75 - 10;
 
     let topPosition = parseInt(rocketImage.style.bottom);
     let leftPosition = parseInt(rocketImage.style.left);
